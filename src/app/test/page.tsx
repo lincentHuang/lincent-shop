@@ -1,6 +1,6 @@
 import React from "react";
 
-import { db } from "@/utils/db";
+import { db } from "@/src/utils/db";
 
 export default async function page() {
   await db.connectDB();
