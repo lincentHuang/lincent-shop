@@ -1,20 +1,23 @@
 import React, { ReactNode } from "react";
 import { Ad } from "./Ad";
 import { XStack } from "@/components/XStack";
-import { Search } from "lucide-react";
+import { Search, ShoppingBag } from "lucide-react";
+import Image from "next/image";
+import { Logo } from "./Logo";
+import { Nav } from "./Nav/Nav";
 type HeaderProps = {
   showAd?: boolean;
 };
 export const Header = ({ showAd }: HeaderProps) => {
   return (
     <>
-      <header>
-        {showAd && <Ad />}
-        <XStack className="header gap-4">
-          <XStack className="items-center">
-            <Search className="size-5"/>
+      {showAd && <Ad />}
+      <header className="bg-header h-[60px] items-center justify-center flex">
+        <XStack className="max-w-[1480px] w-full items-center px-4 justify-between gap-4">
+          <Logo />
+          <XStack className="gap-4 items-center">
+            <Nav />
           </XStack>
-          this is header
         </XStack>
       </header>
     </>

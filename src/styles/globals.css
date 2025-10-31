@@ -3,6 +3,7 @@
 :root {
   --background: #e7e7e7;
   --foreground: #171717;
+  --header:#ffffff;
 }
 
 @theme inline {
@@ -11,6 +12,7 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --color-th-background : var(--th-background);
+  --color-header:var(--header);
 }
 
 @media (prefers-color-scheme: dark) {
