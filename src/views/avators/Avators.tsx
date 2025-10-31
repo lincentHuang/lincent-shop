@@ -1,3 +1,4 @@
+import { cn } from "@/utils/style";
 import Avator1 from "./assets/avator-1.svg";
 import Avator2 from "./assets/avator-2.svg";
 import Avator3 from "./assets/avator-3.svg";
@@ -55,15 +56,8 @@ export const Avators = (props: AvatorsProps) => {
   const Avator =
     Avators.find((avator) => avator.name === props.name)?.component || Avator1;
   return (
-    <Avator
-      className={props.className}
-      width={"24px"}
-      height={"24px"}
-      style={{
-        width: "100%",
-        height: "100%",
-        display: "block"
-      }}
-    />
+    <>
+      <Avator className={cn("size-6", props.className)} />
+    </>
   );
 };
