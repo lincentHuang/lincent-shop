@@ -1,10 +1,10 @@
 import React from "react";
 
-import { db } from "@/src/utils/db";
+import { db } from "@/utils/db";
 
 export default async function page() {
   await db.connectDB();
-  await db.disconnectDB()
+  await db.disconnectDB();
   return (
     <div>
       <main>this is Test page</main>
