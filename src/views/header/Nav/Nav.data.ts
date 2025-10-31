@@ -1,5 +1,4 @@
 import {
-  CircleUser,
   Heart,
   HeartHandshake,
   ShieldUser,
@@ -11,7 +10,6 @@ export type NavType = {
   label: string;
   link: string;
   desktopOnly?: boolean;
-  isAccount?: boolean;
   do?: () => void;
 };
 
@@ -36,5 +34,4 @@ export const NavData: NavType[] = [
   },
   { icon: HeartHandshake, label: "Help", link: "/contact", desktopOnly: true },
   { icon: Heart, label: "Whish list", link: "/blog" },
-  { icon: CircleUser, label: "Account", link: "/blog", isAccount: true },
 ];

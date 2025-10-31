@@ -3,8 +3,9 @@
 :root {
   --background: #e7e7e7;
   --foreground: #171717;
-  --header:#ffffff;
-  --muted:#7c7e84;
+  --header: #ffffff;
+  --muted: #7c7e84;
+  --primary: #4bbaff;
 }
 
 @theme inline {
@@ -12,9 +13,11 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --color-th-background : var(--th-background);
-  --color-header:var(--header);
-  --color-muted:var(--muted);
+  --color-th-background: var(--th-background);
+  --color-header: var(--header);
+  --color-muted: var(--muted);
+  --color-background-primary: var(--primary);
+  --color-foreground-primary: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {

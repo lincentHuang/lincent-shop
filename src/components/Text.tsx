@@ -37,20 +37,20 @@ export const Title = ({
 }: TextProps & TitleVariants) => {
   if (variants === "h2") {
     return (
-      <h2 {...props} className={cn("text-4xl", className)}>
+      <h2 {...props} className={cn("text-4xl font-bold", className)}>
         {children}
       </h2>
     );
   }
   if (variants === "h3") {
     return (
-      <h3 {...props} className={cn("text-2xl", className)}>
+      <h3 {...props} className={cn("text-2xl font-bold", className)}>
         {children}
       </h3>
     );
   }
   return (
-    <h1 {...props} className={cn("text-6xl", className)}>
+    <h1 {...props} className={cn("text-6xl font-bold", className)}>
       {children}
     </h1>
   );

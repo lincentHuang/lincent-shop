@@ -2,9 +2,11 @@ import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
 import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
-import { cart } from "./carSlice";
+import { cart } from "./stores/carSlice";
+import { auth } from "./stores/auth";
+import { userInfo } from "./stores/userInfo";
 
-const reducers = combineReducers({cart});
+const reducers = combineReducers({ cart, auth, userInfo });
 
 const config = { key: "root", storage };
 

@@ -55,9 +55,5 @@ export const Avators = (props: AvatorsProps) => {
   ];
   const Avator =
     Avators.find((avator) => avator.name === props.name)?.component || Avator1;
-  return (
-    <>
-      <Avator className={cn("size-6", props.className)} />
-    </>
-  );
+  return <Avator className={cn(props.className)} />;
 };
