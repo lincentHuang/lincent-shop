@@ -14,7 +14,7 @@ export const Header = ({ showAd }: HeaderProps) => {
     <>
       {showAd && <Ad />}
       <header className="bg-header flex items-center justify-center ">
-        <YStack className="max-w-[1480px] w-full items-center px-4  gap-4 ">
+        <YStack className="max-w-max-width w-full items-center px-4  gap-4 ">
           <Nav />
           <MainContent />
         </YStack>

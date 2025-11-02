@@ -17,7 +17,9 @@
   --color-header: var(--header);
   --color-muted: var(--muted);
   --color-background-primary: var(--primary);
+  --color-primary: var(--primary);
   --color-foreground-primary: #ffffff;
+  --spacing-max-width: 1280px;
 }
 
 @media (prefers-color-scheme: dark) {

@@ -9,7 +9,7 @@ import { HeaderAccount } from "../Account/HeaderAccount";
 
 export const Nav = () => {
   return (
-    <XStack className="h-8 w-full  justify-end relative gap-4 items-center">
+    <XStack className="h-8 w-full z-10 relative justify-end relative gap-4 items-center">
       {NavData.map((item, index) => (
         <React.Fragment key={item.label}>
           <NavItem {...item} />
