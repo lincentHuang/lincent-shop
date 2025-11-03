@@ -3,7 +3,7 @@ import { Text } from "@/components/Text";
 import { YStack } from "@/components/YStack";
 import { useAuth } from "@/hooks/auth/useAuth";
 import { useUserInfo } from "@/hooks/userInfo/useUserInfo";
-import { Avators } from "@/views/avators/Avators";
+import { Avators } from "@/views/_layout/avators/Avators";
 import React from "react";
 
 export const RightPaneMenu = () => {

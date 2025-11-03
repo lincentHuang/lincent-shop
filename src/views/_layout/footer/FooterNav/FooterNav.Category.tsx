@@ -1,11 +1,11 @@
 import React from "react";
-import { FooterCategoryType } from "./FooterNav.data";
 import { YStack } from "@/components/YStack";
 import { Text } from "@/components/Text";
+import { FooterCategoryType } from "@/datas/footerNav.data";
 
 export const FooterNavCategory = (props: FooterCategoryType) => {
   return (
-    <YStack className="flex-1">
+    <YStack className="flex-1 min-w-[150px]">
       {/* title */}
       <YStack className="pb-3">
         <Text className="font-bold"> {props.label}</Text>
