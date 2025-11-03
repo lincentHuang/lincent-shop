@@ -9,7 +9,7 @@ interface SearchProps {
   className?: string;
 }
 
-const Search: React.FC<SearchProps> = ({
+export const SearchBar: React.FC<SearchProps> = ({
   placeholder = "搜索商品...",
   onSearch,
   className = "",
@@ -115,4 +115,3 @@ const Search: React.FC<SearchProps> = ({
   );
 };
 
-export default Search;
