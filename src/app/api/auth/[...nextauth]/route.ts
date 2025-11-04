@@ -1,7 +1,8 @@
 import NextAuth, { AuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook";
-import { MongoDBAdapter } from "@auth/mongodb-adapter"
+import Auth0 from "next-auth/providers/auth0";
+import { MongoDBAdapter } from "@auth/mongodb-adapter";
 import client from "../lib/db";
 
 const authOptions: AuthOptions = {
@@ -12,8 +13,13 @@ const authOptions: AuthOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
     }),
     FacebookProvider({
-      clientId: process.env.FACEBOOK_CLIENT_ID || "",
-      clientSecret: process.env.FACEBOOK_CLIENT_SECRET || "",
+      clientId: process.env.AUTH_FACEBOOK_ID || "",
+      clientSecret: process.env.AUTH_FACEBOOK_SECRET || "",
+    }),
+    Auth0({
+      clientId: process.env.AUTH0_CLIENT_ID || "",
+      clientSecret: process.env.AUTH0_CLIENT_SECRET || "",
+      issuer: process.env.AUTH0_DOMAIN,
     }),
   ],
   // pages: {
