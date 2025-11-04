@@ -16,13 +16,13 @@ type ProvidersProps = {
 };
 export const Providers = ({ children, country }: ProvidersProps) => {
   return (
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <SessionProvider>
+    <SessionProvider>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
           <ServerSideDataProvider country={country} />
           {children}
-        </SessionProvider>
-      </PersistGate>
-    </Provider>
+        </PersistGate>
+      </Provider>
+    </SessionProvider>
   );
 };
