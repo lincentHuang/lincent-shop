@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "@/store";
 import { useDispatch, useSelector } from "react-redux";
+import { signIn, signOut } from "next-auth/react";
 import { useCallback } from "react";
 
 export type UserInfoState = {
@@ -22,11 +23,8 @@ const authSlice = createSlice({
     },
   },
   reducers: {
-    login: (state) => {
-      state.isLogin = true;
-    },
-    logout: (state) => {
-      state.isLogin = false;
+    setIsLogin: (state, action: PayloadAction<boolean>) => {
+      state.isLogin = action.payload;
     },
     setUserInfo: (state, action: PayloadAction<UserInfoState>) => {
       state.userInfo = {
@@ -38,7 +36,7 @@ const authSlice = createSlice({
 });
 
 export const auth = authSlice.reducer;
-export const { login, logout, setUserInfo } = authSlice.actions;
+export const { setIsLogin, setUserInfo } = authSlice.actions;
 
 //  hooks
 
@@ -47,13 +45,12 @@ export const useAuth = () => {
   const isLogin = useSelector((state: RootState) => state.auth.isLogin);
   const userInfo = useSelector((state: RootState) => state.auth.userInfo);
 
-  const handleLogin = useCallback(() => {
-    dispatch(login());
-  }, [dispatch]);
-
-  const handleLogout = useCallback(() => {
-    dispatch(logout());
-  }, [dispatch]);
+  const handleSetLogin = useCallback(
+    (v: boolean) => {
+      dispatch(setIsLogin(v));
+    },
+    [dispatch]
+  );
 
   const handleSetUserInfo = useCallback(
     (v: UserInfoState) => {
@@ -71,9 +68,10 @@ export const useAuth = () => {
 
   return {
     isLogin,
+    setIsLogin: handleSetLogin,
     userInfo,
-    login: handleLogin,
-    logout: handleLogout,
     setUserInfo: handleSetUserInfo,
+    login: signIn,
+    logout: signOut,
   };
 };

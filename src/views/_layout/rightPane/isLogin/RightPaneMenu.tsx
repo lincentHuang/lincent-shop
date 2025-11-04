@@ -3,6 +3,7 @@ import { Text } from "@/components/Text";
 import { YStack } from "@/components/YStack";
 import { useAuth } from "@/store/stores/auth";
 import { Avators } from "@/views/_layout/avators/Avators";
+import Image from "next/image";
 import React from "react";
 
 export const RightPaneMenu = () => {
@@ -11,7 +12,13 @@ export const RightPaneMenu = () => {
   return (
     <YStack className="w-full items-center gap-4">
       <YStack className="items-center">
-        <Avators name={userInfo.avator} className="size-20 mb-4" />
+        <Image
+          src={userInfo.imageUrl}
+          alt="user avator"
+          className="rounded-full overflow-hidden mb-2"
+          width={80}
+          height={80}
+        />
         <Text>
           Hello, <strong>{userInfo.name}</strong>
         </Text>

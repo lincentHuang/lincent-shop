@@ -11,8 +11,10 @@ export const ServerSideDataProvider = ({
   country,
 }: ServerSideDataProviderProps) => {
   const { setCountry } = useCountry();
-  const { setUserInfo, login, logout } = useAuth();
+  const { setUserInfo, login, setIsLogin } = useAuth();
   const session = useSession();
+
+  console.log(session, "qwe123qwe");
   useEffect(() => {
     setCountry(country);
   }, [country, setCountry]);
@@ -25,10 +27,10 @@ export const ServerSideDataProvider = ({
         avator: "avator1",
         imageUrl: session.data.user?.image || "",
       });
-      login();
+      setIsLogin(true);
     }
     if (!session.data) {
-      logout();
+      setIsLogin(false);
       setUserInfo({
         name: "",
         email: "",
@@ -36,6 +38,6 @@ export const ServerSideDataProvider = ({
         imageUrl: "",
       });
     }
-  }, [login, logout, session, setUserInfo]);
+  }, [login, session, setIsLogin, setUserInfo]);
   return <></>;
 };
