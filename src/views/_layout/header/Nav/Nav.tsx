@@ -17,7 +17,7 @@ export const Nav = () => {
           {index < NavData.length && (
             <XStack
               className={cn(
-                "h-6 w-px bg-muted",
+                "h-6 border-r w-0 border-muted",
                 item.desktopOnly && "hidden lg:flex"
               )}
             />

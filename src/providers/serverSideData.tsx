@@ -23,11 +23,18 @@ export const ServerSideDataProvider = ({
         name: session.data.user?.name || "",
         email: session.data.user?.email || "",
         avator: "avator1",
+        imageUrl: session.data.user?.image || "",
       });
       login();
     }
     if (!session.data) {
       logout();
+      setUserInfo({
+        name: "",
+        email: "",
+        avator: "avator1",
+        imageUrl: "",
+      });
     }
   }, [login, logout, session, setUserInfo]);
   return <></>;

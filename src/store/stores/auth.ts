@@ -7,6 +7,7 @@ export type UserInfoState = {
   name?: string;
   email?: string;
   avator?: string;
+  imageUrl?: string;
 };
 
 const authSlice = createSlice({
@@ -17,6 +18,7 @@ const authSlice = createSlice({
       name: "lincent",
       email: "qwe@qwe.qwe",
       avator: "avator1",
+      imageUrl: "",
     },
   },
   reducers: {
@@ -60,6 +62,7 @@ export const useAuth = () => {
           name: v?.name,
           email: v?.email,
           avator: v?.avator,
+          imageUrl: v?.imageUrl,
         })
       );
     },

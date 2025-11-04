@@ -6,6 +6,7 @@ import { Text } from "@/components/Text";
 import { cn } from "@/utils/style";
 import { NavType } from "@/datas/headerNav.data";
 import { useCountry } from "@/store/stores/country";
+import Image from "next/image";
 
 export const NavItem = ({ ...item }: NavType) => {
   const { data: country } = useCountry();
@@ -17,7 +18,7 @@ export const NavItem = ({ ...item }: NavType) => {
           "gap-1 items-center cursor-pointer group relative",
           item?.desktopOnly && "hidden lg:flex"
         )}>
-        <img src={country?.flag} alt={country?.name} className="size-4" />
+        <Image src={country?.flag} alt={country?.name} width={16} height={16} />
         <Text
           variants="small"
           className="duration-300 opacity-60 group-hover:opacity-100">

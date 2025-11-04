@@ -17,13 +17,13 @@ export const Text = ({
 }: TextProps & TextVariants) => {
   if (variants === "small") {
     return (
-      <small {...props} className={cn("text-sm font-thin", className)}>
+      <small {...props} className={cn("text-sm font-base", className)}>
         {children}
       </small>
     );
   }
   return (
-    <p {...props} className={cn("text-base ", className)}>
+    <p {...props} className={cn("text-base  ", className)}>
       {children}
     </p>
   );

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono , Noto_Sans_TC } from "next/font/google";
 
 import "../styles/globals.css";
 import { Providers } from "../providers/providers";
@@ -9,6 +9,11 @@ import axios from "axios";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const notoSans = Noto_Sans_TC({
+  variable: "--font-noto-sans-tc",
   subsets: ["latin"],
 });
 
@@ -37,7 +42,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        className={`${geistSans.variable} ${geistMono.variable} ${notoSans.variable} antialiased`}>
         <Providers
           country={{ name: country.name, flag: country.flag.emojitwo }}>
           <Header />

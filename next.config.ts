@@ -27,6 +27,14 @@ const nextConfig: NextConfig = {
       },
     },
   },
+  images:{
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
+  },
   sassOptions: {
     additionalData: `@import "@/styles/base.scss";`,
   },
