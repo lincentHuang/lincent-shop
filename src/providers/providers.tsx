@@ -1,20 +1,25 @@
-"use client"
+"use client";
 
 import React, { ReactNode } from "react";
 import { persistStore } from "redux-persist";
 import store from "@/store";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
+import { ServerSideDataProvider } from "./serverSideData";
+import { countryProps } from "@/types/layout";
 
 const persistor = persistStore(store);
-
-export const Providers = ({ children }: { children: ReactNode }) => {
+type ProvidersProps = {
+  children: ReactNode;
+  country?: countryProps;
+};
+export const Providers = ({ children ,country }: ProvidersProps) => {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
+        <ServerSideDataProvider country={country} />
         {children}
       </PersistGate>
     </Provider>
   );
-  
 };

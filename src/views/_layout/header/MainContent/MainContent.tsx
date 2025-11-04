@@ -5,9 +5,10 @@ import { CircleUser, ShoppingBag } from "lucide-react";
 import { YStack } from "@/components/YStack";
 import { Text } from "@/components/Text";
 import { Avators } from "../../avators/Avators";
-import { useUserInfo } from "@/hooks/userInfo/useUserInfo";
-import { useAuth } from "@/hooks/auth/useAuth";
+
 import { Search } from "./Search";
+import { useUserInfo } from "@/store/stores/userInfo";
+import { useAuth } from "@/store/stores/auth";
 
 export const MainContent = () => {
   const { data } = useUserInfo();

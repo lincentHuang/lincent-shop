@@ -6,8 +6,9 @@ import { cn } from "@/utils/style";
 import { Avators } from "@/views/_layout/avators/Avators";
 import { RightPane } from "@/views/_layout/rightPane/RightPane";
 import { ChevronDown, CircleUser } from "lucide-react";
-import { useAuth } from "@/hooks/auth/useAuth";
-import { useUserInfo } from "@/hooks/userInfo/useUserInfo";
+import { useAuth } from "@/store/stores/auth";
+import { useUserInfo } from "@/store/stores/userInfo";
+
 
 export const HeaderAccount = () => {
   const { isLogin } = useAuth();

@@ -6,13 +6,14 @@ import { cn } from "@/utils/style";
 import { NavItem } from "./Nav.Item";
 import { HeaderAccount } from "../Account/HeaderAccount";
 import { NavData } from "@/datas/headerNav.data";
+import { countryProps } from "@/types/layout";
 
-export const Nav = () => {
+export const Nav = ({ country }: { country?: countryProps }) => {
   return (
     <XStack className="h-8 w-full z-10 relative justify-end relative gap-4 items-center hidden sm:flex">
       {NavData.map((item, index) => (
         <React.Fragment key={item.label}>
-          <NavItem {...item} />
+          <NavItem {...item} country={country} />
           {index < NavData.length && (
             <XStack
               className={cn(

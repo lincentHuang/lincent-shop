@@ -5,8 +5,9 @@ import { persistReducer } from "redux-persist";
 import { cart } from "./stores/carSlice";
 import { auth } from "./stores/auth";
 import { userInfo } from "./stores/userInfo";
+import { country } from "./stores/country";
 
-const reducers = combineReducers({ cart, auth, userInfo });
+const reducers = combineReducers({ cart, auth, userInfo, country });
 
 const config = { key: "root", storage };
 
