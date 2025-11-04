@@ -1,11 +1,15 @@
+import { useCountry } from "@/store/stores/country";
 import { countryProps } from "@/types/layout";
-import React from "react";
+import React, { useEffect } from "react";
 type ServerSideDataProviderProps = {
   country?: countryProps;
 };
 export const ServerSideDataProvider = ({
   country,
 }: ServerSideDataProviderProps) => {
-    
-  return <div>serverSideData</div>;
+  const { setCountry } = useCountry();
+  useEffect(() => {
+    setCountry(country);
+  }, [country, setCountry]);
+  return <></>;
 };

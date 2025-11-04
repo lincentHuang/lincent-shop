@@ -38,10 +38,9 @@ export default async function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Providers>
-          <Header
-            country={{ name: country.name, flag: country.flag.emojitwo }}
-          />
+        <Providers
+          country={{ name: country.name, flag: country.flag.emojitwo }}>
+          <Header />
           <main className="min-h-[80svh]">{children}</main>
           <Footer />
         </Providers>

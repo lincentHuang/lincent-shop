@@ -1,12 +1,11 @@
 import { Collapsible } from "@/components/Collapsible";
 import { YStack } from "@/components/YStack";
-import { useAuth } from "@/hooks/auth/useAuth";
 import { cn } from "@/utils/style";
 import React from "react";
 import { RightPaneMenu } from "./isLogin/RightPaneMenu";
 import { RightPaneAuth } from "./isNotLogin/RightPaneAuth";
 import { Title } from "@/components/Text";
-import { useUserInfo } from "@/hooks/userInfo/useUserInfo";
+import { useAuth } from "@/store/stores/auth";
 type RightPaneProps = {
   open?: boolean;
 };

@@ -16,12 +16,9 @@ const countrySlice = createSlice({
     flag: "",
   },
   reducers: {
-    setCountry: (
-      state,
-      action: PayloadAction<{ name?: string; flag?: string }>
-    ) => {
-      if (action.payload.name !== undefined) state.name = action.payload.name;
-      if (action.payload.flag !== undefined) state.flag = action.payload.flag;
+    setCountry: (state, action: PayloadAction<countryProps | undefined>) => {
+      if (action?.payload?.name !== undefined) state.name = action.payload.name;
+      if (action?.payload?.flag !== undefined) state.flag = action.payload.flag;
     },
   },
 });
@@ -34,13 +31,12 @@ export const useCountry = () => {
   const dispatch = useDispatch();
   const data = useSelector((state: RootState) => state.country);
 
-  const handleSetCountry = (country: countryProps) => {
+  const handleSetCountry = (country?: countryProps) => {
     dispatch(setCountry(country));
   };
 
   return {
     data,
-    handleSetCountry,
+    setCountry: handleSetCountry,
   };
 };
-

@@ -1,7 +1,7 @@
 import { Button } from "@/components/Button";
 import { XStack } from "@/components/XStack";
 import { YStack } from "@/components/YStack";
-import { useAuth } from "@/hooks/auth/useAuth";
+import { useAuth } from "@/store/stores/auth";
 
 export const RightPaneAuth = () => {
   const { login } = useAuth();

@@ -5,12 +5,10 @@ import React from "react";
 import { Text } from "@/components/Text";
 import { cn } from "@/utils/style";
 import { NavType } from "@/datas/headerNav.data";
-import { countryProps } from "@/types/layout";
+import { useCountry } from "@/store/stores/country";
 
-export const NavItem = ({
-  country,
-  ...item
-}: NavType & { country?: countryProps }) => {
+export const NavItem = ({ ...item }: NavType) => {
+  const { data: country } = useCountry();
   if (item.id === "locale") {
     return (
       <XStack

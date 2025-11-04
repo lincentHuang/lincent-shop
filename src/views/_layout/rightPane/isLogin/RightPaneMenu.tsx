@@ -1,8 +1,9 @@
 import { Button } from "@/components/Button";
 import { Text } from "@/components/Text";
 import { YStack } from "@/components/YStack";
-import { useAuth } from "@/hooks/auth/useAuth";
-import { useUserInfo } from "@/hooks/userInfo/useUserInfo";
+import { useAuth } from "@/store/stores/auth";
+import { useUserInfo } from "@/store/stores/userInfo";
+
 import { Avators } from "@/views/_layout/avators/Avators";
 import React from "react";
 
