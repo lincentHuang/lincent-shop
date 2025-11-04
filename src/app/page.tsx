@@ -3,15 +3,16 @@
 import Image from "next/image";
 import "../styles/test.scss";
 import { HomeView } from "@/views/home";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { signIn, signOut } from "next-auth/react";
+import { useAuth } from "@/store/stores/auth";
 
 export default function Home() {
-  const { data: session } = useSession();
-  if (session) {
+  const { isLogin, userInfo } = useAuth();
+  if (isLogin) {
     return (
       <>
-        Signed in as {session?.user?.email} <br />
-        <button onClick={() => signOut()}>Sign out</button>
+        Signed in as {userInfo?.email} <br />
+        <button onClick={() => signOut()}>Sign out </button>
       </>
     );
   }

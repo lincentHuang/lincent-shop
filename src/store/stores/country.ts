@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "@/store";
 import { countryProps } from "@/types/layout";
 import { useDispatch, useSelector } from "react-redux";
+import { useCallback } from "react";
 
 export type UserInfoState = {
   name: string;
@@ -31,10 +32,12 @@ export const useCountry = () => {
   const dispatch = useDispatch();
   const data = useSelector((state: RootState) => state.country);
 
-  const handleSetCountry = (country?: countryProps) => {
-    dispatch(setCountry(country));
-  };
-
+  const handleSetCountry = useCallback(
+    (country?: countryProps) => {
+      dispatch(setCountry(country));
+    },
+    [dispatch]
+  );
   return {
     data,
     setCountry: handleSetCountry,

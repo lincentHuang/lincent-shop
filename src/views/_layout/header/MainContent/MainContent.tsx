@@ -7,12 +7,10 @@ import { Text } from "@/components/Text";
 import { Avators } from "../../avators/Avators";
 
 import { Search } from "./Search";
-import { useUserInfo } from "@/store/stores/userInfo";
 import { useAuth } from "@/store/stores/auth";
 
 export const MainContent = () => {
-  const { data } = useUserInfo();
-  const { isLogin } = useAuth();
+  const { isLogin, userInfo } = useAuth();
   return (
     <YStack className="w-full">
       <XStack className="h-[60px] w-full items-center sm:justify-center gap-4  justify-between">
@@ -30,7 +28,7 @@ export const MainContent = () => {
             </YStack>
           </YStack>
           <YStack className="sm:hidden">
-            {isLogin && <Avators name={data.avator} className="size-6" />}
+            {isLogin && <Avators name={userInfo.avator} className="size-6" />}
             {!isLogin && <CircleUser className="size-6  text-gray-500" />}
           </YStack>
         </XStack>

@@ -15,7 +15,7 @@ export const NavItem = ({ ...item }: NavType) => {
         key={item.label}
         className={cn(
           "gap-1 items-center cursor-pointer group relative",
-          item.desktopOnly && "hidden lg:flex"
+          item?.desktopOnly && "hidden lg:flex"
         )}>
         <img src={country?.flag} alt={country?.name} className="size-4" />
         <Text

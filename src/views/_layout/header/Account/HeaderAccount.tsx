@@ -7,12 +7,8 @@ import { Avators } from "@/views/_layout/avators/Avators";
 import { RightPane } from "@/views/_layout/rightPane/RightPane";
 import { ChevronDown, CircleUser } from "lucide-react";
 import { useAuth } from "@/store/stores/auth";
-import { useUserInfo } from "@/store/stores/userInfo";
-
-
 export const HeaderAccount = () => {
-  const { isLogin } = useAuth();
-  const { data } = useUserInfo();
+  const { isLogin, userInfo } = useAuth();
   const [open, setOpen] = React.useState(false);
 
   const opacityStyle = "duration-300 opacity-60 group-hover:opacity-100";
@@ -22,9 +18,9 @@ export const HeaderAccount = () => {
         onClick={() => setOpen(!open)}
         className={cn("gap-1 items-center cursor-pointer group relative")}>
         {!isLogin && <CircleUser className="size-4 text-gray-500" />}
-        {isLogin && <Avators name={data.avator} className="size-4" />}
+        {isLogin && <Avators name={userInfo.avator} className="size-4" />}
         <Text variants="small" className={cn(opacityStyle, "")}>
-          {isLogin ? data.name : "account"}
+          {isLogin ? userInfo.name : "account"}
         </Text>
         <ChevronDown className={cn(opacityStyle, open && "rotate-180", "")} />
       </XStack>

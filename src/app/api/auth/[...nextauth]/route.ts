@@ -1,8 +1,11 @@
-import NextAuth from "next-auth";
+import NextAuth, { AuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook";
+import { MongoDBAdapter } from "@auth/mongodb-adapter"
+import client from "../lib/db";
 
-const authOptions = {
+const authOptions: AuthOptions = {
+  adapter: MongoDBAdapter(client),
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID || "",
@@ -13,6 +16,13 @@ const authOptions = {
       clientSecret: process.env.FACEBOOK_CLIENT_SECRET || "",
     }),
   ],
+  // pages: {
+  //   signIn: "/signin",
+  // },
+  session: {
+    strategy: "jwt",
+  },
+  secret: process.env.NEXTAUTH_SECRET,
 };
 
 const handler = NextAuth(authOptions);
