@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "@/store";
-import { countryProps } from "@/types/layout";
+import { countryProps } from "@/types/layoutType";
 import { useDispatch, useSelector } from "react-redux";
 import { useCallback } from "react";
 

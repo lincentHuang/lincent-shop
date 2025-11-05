@@ -22,9 +22,9 @@ const authOptions: AuthOptions = {
     //   issuer: process.env.AUTH0_DOMAIN,
     // }),
   ],
-  // pages: {
-  //   signIn: "/signin",
-  // },
+  pages: {
+    signIn: "/signin",
+  },
   session: {
     strategy: "jwt",
   },

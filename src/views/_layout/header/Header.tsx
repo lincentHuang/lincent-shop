@@ -6,7 +6,7 @@ import { XStack } from "@/components/XStack";
 import { Nav } from "./Nav/Nav";
 import { YStack } from "@/components/YStack";
 import { MainContent } from "./MainContent/MainContent";
-import { countryProps } from "@/types/layout";
+import { countryProps } from "@/types/layoutType";
 type HeaderProps = {
   showAd?: boolean;
 };

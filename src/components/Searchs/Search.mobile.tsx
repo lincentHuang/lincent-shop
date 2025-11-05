@@ -2,7 +2,7 @@
 import { cn } from "@/utils/style";
 import { Search } from "lucide-react";
 import React from "react";
-import { Text } from "./Text";
+import { Text } from "../Text";
 
 interface SearchProps {
   placeholder?: string;

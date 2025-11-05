@@ -6,7 +6,7 @@ import store from "@/store";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { ServerSideDataProvider } from "./serverSideData";
-import { countryProps } from "@/types/layout";
+import { countryProps } from "@/types/layoutType";
 import { SessionProvider } from "next-auth/react";
 
 const persistor = persistStore(store);

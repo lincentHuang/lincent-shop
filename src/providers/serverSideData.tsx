@@ -1,7 +1,7 @@
 "use client";
 import { useAuth } from "@/store/stores/auth";
 import { useCountry } from "@/store/stores/country";
-import { countryProps } from "@/types/layout";
+import { countryProps } from "@/types/layoutType";
 import { useSession } from "next-auth/react";
 import React, { useEffect } from "react";
 type ServerSideDataProviderProps = {

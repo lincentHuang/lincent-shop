@@ -1,5 +1,5 @@
-import { SearchBar } from "@/components/Search.desktop";
-import { SearchBarButton } from "@/components/Search.mobile";
+import { SearchBar } from "@/components/Searchs/Search.desktop";
+import { SearchBarButton } from "@/components/Searchs/Search.mobile";
 import React from "react";
 
 export const Search = () => {

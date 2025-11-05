@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono , Noto_Sans_TC } from "next/font/google";
+import { Geist, Geist_Mono, Noto_Sans_TC } from "next/font/google";
 
 import "../styles/globals.css";
 import { Providers } from "../providers/providers";
 import { Header } from "@/views/_layout/header/Header";
 import { Footer } from "@/views/_layout/footer/Footer";
 import axios from "axios";
+import { YStack } from "@/components/YStack";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -46,7 +47,9 @@ export default async function RootLayout({
         <Providers
           country={{ name: country.name, flag: country.flag.emojitwo }}>
           <Header />
-          <main className="min-h-[80svh]">{children}</main>
+          <main className="w-full flex flex-col items-center">
+            <div className="max-w-max-width w-full px-4">{children}</div>
+          </main>
           <Footer />
         </Providers>
       </body>

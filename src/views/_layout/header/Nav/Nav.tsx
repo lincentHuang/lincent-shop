@@ -6,7 +6,7 @@ import { cn } from "@/utils/style";
 import { NavItem } from "./Nav.Item";
 import { HeaderAccount } from "../Account/HeaderAccount";
 import { NavData } from "@/datas/headerNav.data";
-import { countryProps } from "@/types/layout";
+import { countryProps } from "@/types/layoutType";
 
 export const Nav = () => {
   return (

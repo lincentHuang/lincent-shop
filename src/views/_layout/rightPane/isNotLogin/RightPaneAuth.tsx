@@ -1,4 +1,4 @@
-import { Button } from "@/components/Button";
+import { Button } from "@/components/Buttons/Button";
 import { XStack } from "@/components/XStack";
 import { YStack } from "@/components/YStack";
 import { useAuth } from "@/store/stores/auth";
