@@ -1,51 +1,60 @@
-import React from "react";
+import React, { useState } from "react";
 import { Title } from "@/components/Text";
 import { YStack } from "@/components/YStack";
 import Input from "@/components/Fields/Input";
-import { Form, Formik } from "formik";
-import { Key, KeyRound, Mail } from "lucide-react";
+import { Form, FormikProvider, useFormik } from "formik";
+import { KeyRound, Mail } from "lucide-react";
+import * as Yup from "yup";
 
 export default function Signup() {
+
+
+  const formik = useFormik({
+    enableReinitialize: true,
+    initialValues: {
+      email:"",
+      password:"",
+      posswordConfirm:"",
+    },
+    validateOnChange: true,
+    validationSchema: Yup.object({
+      email: Yup.string()
+        .min(3, "Must be at least 8 characters")
+        .email("Invalid email address")
+        .required("Username is required"),
+      password: Yup.string()
+        .min(6, "Password must be at least 6 characters")
+        .required("Required"),
+    }),
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
   return (
     <YStack className="gap-4 flex-1">
       <Title variants="h3"> Sign up</Title>
-      <Formik
-        initialValues={{
-          email: "",
-          password: "",
-          confirmPassword: "",
-        }}
-        onSubmit={async (values) => {
-          await new Promise((r) => setTimeout(r, 500));
-          alert(JSON.stringify(values, null, 2));
-        }}>
-          
-      <Form>
-        <Input
-          type="text"
-          name="email"
-          icon={<Mail />}
-          placeholder="Email"
-        />
-        <Input
-          type="password"
-          name="password"
-          icon={<KeyRound />}
-          placeholder="Password"
+      <FormikProvider value={formik}>
+        <Form>
+          <Input type="text" name="email" icon={<Mail />} placeholder="Email" />
+          <Input
+            type="password"
+            name="password"
+            icon={<KeyRound />}
+            placeholder="Password"
           />
-        <Input
-          type="password"
-          name="confirmPassword"
-          icon={<KeyRound />}
-          placeholder="Confirm Password"
-        />
-        <button
-          type="submit"
-          className="bg-green-500 text-white rounded-md p-2 w-full">
-          Sign Up
-        </button>
-      </Form>
-      </Formik>
+          <Input
+            type="password"
+            name="confirmPassword"
+            icon={<KeyRound />}
+            placeholder="Confirm Password"
+          />
+          <button
+            type="submit"
+            className="bg-green-500 text-white rounded-md p-2 w-full">
+            Sign Up
+          </button>
+        </Form>
+      </FormikProvider>
     </YStack>
   );
 }

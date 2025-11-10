@@ -4,24 +4,13 @@ import { YStack } from "@/components/YStack";
 import { Form, FormikProvider, useFormik } from "formik";
 import * as Yup from "yup";
 import { KeyRound, Mail } from "lucide-react";
-import { useState } from "react";
 
 export default function Signin() {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
-  const { email, password } = formData;
-
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      email,
-      password,
+      email: "",
+      password: "",
     },
     validateOnChange: true,
     validationSchema: Yup.object({
@@ -43,18 +32,11 @@ export default function Signin() {
       <Title variants="h3"> Sign in</Title>
       <FormikProvider value={formik}>
         <Form>
-          <Input
-            name="email"
-            icon={<Mail />}
-            type="text"
-            onChange={onChange}
-            placeholder="Email"
-          />
+          <Input name="email" icon={<Mail />} type="text" placeholder="Email" />
           <Input
             icon={<KeyRound />}
             name="password"
             type="password"
-            onChange={onChange}
             placeholder="Password"
           />
           <button
