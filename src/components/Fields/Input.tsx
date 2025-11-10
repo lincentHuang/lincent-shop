@@ -33,7 +33,9 @@ const Input: React.FC<InputProps> = ({
 
   const [isFocused, setIsFocused] = useState(false);
   const showFeedback =
-    (!!isFocused && field.value.trim().length > 2) || meta.touched;
+    (!!isFocused && field.value?.trim().length > 2) || meta.touched;
+
+    
   const hasError = showFeedback && meta.error;
 
   const [showPassword, setShowPassword] = useState(false);

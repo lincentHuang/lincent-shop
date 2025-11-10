@@ -1,9 +1,10 @@
 import Input from "@/components/Fields/Input";
-import { Title } from "@/components/Text";
+import { Text, Title } from "@/components/Text";
 import { YStack } from "@/components/YStack";
 import { Form, FormikProvider, useFormik } from "formik";
 import * as Yup from "yup";
 import { KeyRound, Mail } from "lucide-react";
+import Link from "next/link";
 
 export default function Signin() {
   const formik = useFormik({
@@ -39,12 +40,19 @@ export default function Signin() {
             type="password"
             placeholder="Password"
           />
+        
           <button
             type="submit"
             className="bg-blue-500 text-white rounded-md p-2 w-full hover:bg-blue-600 transition-colors duration-200">
             Sign In
           </button>
         </Form>
+        <Link
+            href={"/forgot-password"}
+            className=" justify-start flex mb-4"
+            onClick={() => {}}>
+            <Text className="text-primary"> forgot password </Text>
+          </Link>
       </FormikProvider>
     </YStack>
   );

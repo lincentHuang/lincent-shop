@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { Title } from "@/components/Text";
 import { YStack } from "@/components/YStack";
 import Input from "@/components/Fields/Input";
@@ -25,6 +24,9 @@ export default function Signup() {
       password: Yup.string()
         .min(6, "Password must be at least 6 characters")
         .required("Required"),
+      posswordConfirm: Yup.string()
+        .oneOf([Yup.ref('password'), ], 'Passwords must match')
+        .required('Confirm Password is required'),
     }),
     onSubmit: (values) => {
       console.log(values);
@@ -44,7 +46,7 @@ export default function Signup() {
           />
           <Input
             type="password"
-            name="confirmPassword"
+            name="posswordConfirm"
             icon={<KeyRound />}
             placeholder="Confirm Password"
           />

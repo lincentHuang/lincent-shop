@@ -1,6 +1,6 @@
 "use client";
-import { BackButton } from "@/components/Buttons/BackButton";
-import { Text, Title } from "@/components/Text";
+// import { BackButton } from "@/components/Buttons/BackButton";
+// import { Text, Title } from "@/components/Text";
 import { XStack } from "@/components/XStack";
 import { YStack } from "@/components/YStack";
 
