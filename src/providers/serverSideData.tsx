@@ -14,7 +14,6 @@ export const ServerSideDataProvider = ({
   const { setUserInfo, login, setIsLogin } = useAuth();
   const session = useSession();
 
-  console.log(session, "qwe123qwe");
   useEffect(() => {
     setCountry(country);
   }, [country, setCountry]);
