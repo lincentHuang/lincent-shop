@@ -1,7 +1,20 @@
+/**
+ * 電子郵件發送工具
+ * 
+ * 流程說明：
+ * 1. 使用 Google OAuth2 進行身份驗證
+ * 2. 透過 Gmail API 獲取存取權杖 (Access Token)
+ * 3. 建立 Nodemailer 傳輸器並設定 OAuth2 認證
+ * 4. 設定郵件選項（收件者、主旨、HTML 內容）
+ * 5. 發送郵件並處理成功/失敗狀態
+ * 
+ * 使用場景：主要用於發送用戶註冊驗證郵件
+ */
+
+
 import { activeEmailTemplate } from "@/emailTemplates/emailTemplate1";
 import { google } from "googleapis";
 import nodemailer from "nodemailer";
-import { ReactNode } from "react";
 
 const { OAuth2 } = google.auth;
 
