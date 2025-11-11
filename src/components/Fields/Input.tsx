@@ -53,9 +53,9 @@ const Input: React.FC<InputProps> = ({
 
       <XStack
         className={cn(
-          " w-full px-4 py-3  gap-4 border-2 rounded-lg shadow-sm transition-colors duration-200",
+          " w-full px-4 py-3  gap-4 border rounded-lg shadow-xs transition-colors duration-200",
           isFocused
-            ? "border-blue-500  shadow-lg shadow-blue-500/20"
+            ? "border-blue-500  shadow-xs shadow-blue-500/20"
             : "border-gray-200 hover:border-gray-300",
           hasError && "border-red-500 focus:ring-red-500 focus:border-red-500",
           disabled && "bg-gray-100 cursor-not-allowed opacity-60"

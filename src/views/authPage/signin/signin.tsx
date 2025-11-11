@@ -80,7 +80,7 @@ export default function Signin({ providers }: { providers: ProvidersProps }) {
             return (
               <div key={provider.name} className="flex-1">
                 <button
-                  className=" border border-gray-400 gap-4 text-foreground rounded-md p-2 w-full flex items-center cursor-pointer transition-colors duration-200"
+                  className=" border border-gray-200 gap-4 text-foreground hover:border-gray-400 shadow-xs rounded-md p-2 w-full flex items-center cursor-pointer transition-colors duration-200"
                   onClick={() => {
                     signIn(provider.id);
                   }}>
