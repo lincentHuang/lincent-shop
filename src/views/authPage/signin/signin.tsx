@@ -11,7 +11,6 @@ import Link from "next/link";
 import { ProvidersProps } from "@/app/signin/page";
 import { ClientSafeProvider, signIn } from "next-auth/react";
 import { XStack } from "@/components/XStack";
-import Image from "next/image";
 
 export default function Signin({ providers }: { providers: ProvidersProps }) {
   const formik = useFormik({

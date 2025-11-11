@@ -4,7 +4,6 @@ import Input from "@/components/Fields/Input";
 import { Form, FormikProvider, useFormik } from "formik";
 import { KeyRound, Mail } from "lucide-react";
 import * as Yup from "yup";
-import { ProvidersProps } from "@/app/signin/page";
 
 export default function Signup() {
   const formik = useFormik({
