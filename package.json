@@ -30,6 +30,7 @@
     "redux-persist": "^6.0.0",
     "redux-thunk": "^3.1.0",
     "sass": "^1.93.2",
+    "ts-pattern": "^5.9.0",
     "yup": "^1.7.1"
   },
   "devDependencies": {

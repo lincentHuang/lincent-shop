@@ -8,14 +8,15 @@ import { SigninHeader } from "./_signin.comp/signin.header";
 import Section from "@/components/Section";
 import Signin from "./signin/signin";
 import Signup from "./signup/signup";
+import { ProvidersProps } from "@/app/signin/page";
 
-export default function AuthView() {
+export default function AuthView({ providers }: { providers: ProvidersProps }) {
   return (
     <YStack className="justify-start items-start my-4 gap-4 w-full">
       <SigninHeader />
       <Section>
         <XStack className="gap-4">
-          <Signin />
+          <Signin providers={providers} />
           <Signup />
         </XStack>
       </Section>
