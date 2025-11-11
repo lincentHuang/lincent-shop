@@ -7,14 +7,12 @@ import * as Yup from "yup";
 import { ProvidersProps } from "@/app/signin/page";
 
 export default function Signup() {
-
-
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      email:"",
-      password:"",
-      posswordConfirm:"",
+      email: "",
+      password: "",
+      posswordConfirm: "",
     },
     validateOnChange: true,
     validationSchema: Yup.object({
@@ -26,16 +24,15 @@ export default function Signup() {
         .min(6, "Password must be at least 6 characters")
         .required("Required"),
       posswordConfirm: Yup.string()
-        .oneOf([Yup.ref('password'), ], 'Passwords must match')
-        .required('Confirm Password is required'),
+        .oneOf([Yup.ref("password")], "Passwords must match")
+        .required("Confirm Password is required"),
     }),
     onSubmit: (values) => {
       console.log(values);
     },
   });
   return (
-    <YStack className="gap-4 flex-1">
-      <Title variants="h3"> Sign up</Title>
+    <YStack className="gap-4 flex-1 w-full">
       <FormikProvider value={formik}>
         <Form>
           <Input type="text" name="email" icon={<Mail />} placeholder="Email" />

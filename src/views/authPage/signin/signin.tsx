@@ -38,8 +38,7 @@ export default function Signin({ providers }: { providers: ProvidersProps }) {
   const arrayProviders = Object.values(providers || {});
 
   return (
-    <YStack className="gap-4 flex-1">
-      <Title variants="h3"> Sign in</Title>
+    <YStack className="gap-4 flex-1 w-full">
       <FormikProvider value={formik}>
         <Form>
           <Input name="email" icon={<Mail />} type="text" placeholder="Email" />
