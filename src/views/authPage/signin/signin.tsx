@@ -39,6 +39,7 @@ export default function Signin({ providers }: { providers: ProvidersProps }) {
 
   return (
     <YStack className="gap-4 flex-1 w-full">
+      <Title variants="h3"> Sign in</Title>
       <FormikProvider value={formik}>
         <Form>
           <Input name="email" icon={<Mail />} type="text" placeholder="Email" />

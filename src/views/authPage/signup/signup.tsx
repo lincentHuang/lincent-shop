@@ -33,6 +33,7 @@ export default function Signup() {
   });
   return (
     <YStack className="gap-4 flex-1 w-full">
+      <Title variants="h3"> Sign up</Title>
       <FormikProvider value={formik}>
         <Form>
           <Input type="text" name="email" icon={<Mail />} placeholder="Email" />
