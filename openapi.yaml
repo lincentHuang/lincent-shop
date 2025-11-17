@@ -1,0 +1,104 @@
+openapi: 3.1.0
+info:
+  title: Lincent Online Shop API
+  version: 1.0.0
+  description: 線上商店 API 文檔
+
+servers:
+  - url: http://localhost:3000
+    description: 開發環境
+  - url: https://your-production-url.com
+    description: 正式環境
+
+paths:
+  /api/auth/signup:
+    post:
+      tags:
+        - Auth
+      summary: 用戶註冊
+      operationId: signup
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignupRequest'
+      responses:
+        '201':
+          description: 註冊成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignupResponse'
+        '400':
+          description: 驗證失敗
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    SignupRequest:
+      type: object
+      required:
+        - name
+        - email
+        - password
+        - passwordConfirm
+      properties:
+        name:
+          type: string
+          minLength: 2
+          example: "張三"
+        email:
+          type: string
+          format: email
+          example: "zhang@example.com"
+        password:
+          type: string
+          minLength: 6
+          example: "password123"
+        passwordConfirm:
+          type: string
+          example: "password123"
+    
+    SignupResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "註冊成功，請檢查您的信箱"
+        success:
+          type: boolean
+          example: true
+        data:
+          $ref: '#/components/schemas/User'
+    
+    User:
+      type: object
+      properties:
+        _id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        role:
+          type: string
+          enum: [user, admin]
+        emailVerified:
+          type: boolean
+    
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        success:
+          type: boolean
+          example: false
+        errors:
+          type: array
+          items:
+            type: string

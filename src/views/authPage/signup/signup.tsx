@@ -4,17 +4,22 @@ import Input from "@/components/Fields/Input";
 import { Form, FormikProvider, useFormik } from "formik";
 import { KeyRound, Mail } from "lucide-react";
 import * as Yup from "yup";
+import { useSignup } from "@/hooks/useSignup";
 
 export default function Signup() {
+
+  const {trigger:signupSubmit}= useSignup()
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
+      name:"",
       email: "",
       password: "",
       posswordConfirm: "",
     },
     validateOnChange: true,
     validationSchema: Yup.object({
+      name: Yup.string().required("Name is required"),
       email: Yup.string()
         .min(3, "Must be at least 8 characters")
         .email("Invalid email address")
@@ -27,7 +32,12 @@ export default function Signup() {
         .required("Confirm Password is required"),
     }),
     onSubmit: (values) => {
-      console.log(values);
+      signupSubmit({
+        name:values.name,
+        email: values.email,
+        password: values.password,
+        passwordConfirm: values.posswordConfirm,
+      });
     },
   });
   return (
@@ -58,3 +68,4 @@ export default function Signup() {
     </YStack>
   );
 }
+

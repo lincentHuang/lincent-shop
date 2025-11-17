@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "generate:types": "openapi-typescript openapi.yaml -o src/types/api.ts",
+    "generate:watch": "openapi-typescript openapi.yaml -o src/types/api.ts --watch"
+ 
   },
   "dependencies": {
     "@auth/mongodb-adapter": "^3.11.1",
@@ -30,14 +33,18 @@
     "next-connect": "^1.0.0",
     "next-redux-wrapper": "^8.1.0",
     "nodemailer": "^7.0.10",
+    "openapi-fetch": "^0.15.0",
+    "openapi-typescript": "^7.10.1",
     "react": "19.2.0",
     "react-dom": "19.2.0",
+    "react-hot-toast": "^2.6.0",
     "react-redux": "^9.2.0",
     "redux": "^5.0.1",
     "redux-devtools-extension": "^2.13.9",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^3.1.0",
     "sass": "^1.93.2",
+    "swr": "^2.3.6",
     "ts-pattern": "^5.9.0",
     "yup": "^1.7.1"
   },

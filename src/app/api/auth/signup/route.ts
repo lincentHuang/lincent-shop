@@ -1,6 +1,6 @@
 /**
  * 用戶註冊 API 路由
- * 
+ *
  * 流程說明：
  * 1. 接收用戶註冊資料（姓名、信箱、密碼、確認密碼）
  * 2. 驗證必填欄位和信箱格式
@@ -10,7 +10,7 @@
  * 6. 創建新用戶並儲存到資料庫
  * 7. 生成帳戶啟用令牌
  * 8. 發送啟用信件給用戶
- * 
+ *
  * 使用方式：
  * POST /api/auth/signup
  * Content-Type: application/json
@@ -20,7 +20,7 @@
  *   "password": "密碼",
  *   "passwordConfirm": "確認密碼"
  * }
- * 
+ *
  * 回應格式：
  * 成功：{ message: "註冊成功", success: true, data: userObject }
  * 失敗：{ message: "錯誤訊息", success: false }
@@ -52,11 +52,11 @@ export async function POST(request: NextRequest) {
   try {
     // 連接資料庫
     await db.connectDB();
-    
+
     // 解析請求內容，取得註冊資料
     const body = await request.json();
     const { name, email, password, passwordConfirm } = body;
-    
+
     // 驗證必填欄位是否完整
     if (!name || !email || !password || !passwordConfirm) {
       return NextResponse.json(
@@ -64,7 +64,7 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
-    
+
     // 驗證 Email 格式是否正確
     if (!validateEmail(email)) {
       return NextResponse.json(
@@ -81,7 +81,7 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
-    
+
     // 驗證密碼強度（最少6個字元）
     if (password.length < 6) {
       return NextResponse.json(
@@ -89,7 +89,7 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
-    
+
     // 使用 bcrypt 對密碼進行加密，鹽值為12
     const cryptedPassword = await bcrypt.hash(password, 12);
 
@@ -99,10 +99,10 @@ export async function POST(request: NextRequest) {
       email,
       password: cryptedPassword,
     });
-    
+
     // 將新用戶儲存到資料庫
     const addedUser = await newUser.save();
-    
+
     // 生成帳戶啟用令牌，用於信箱驗證
     const activation_token = createActivationToken({
       id: addedUser._id,
@@ -110,10 +110,11 @@ export async function POST(request: NextRequest) {
 
     // 構建啟用帳戶的網址
     const url = `${process.env.BASE_URL}/activate/${activation_token}`;
-    
+
     // 發送啟用信件給新註冊的用戶
     sendEmail(email, url, "Activate your account");
-    
+
+    db.disconnectDB();
     // 回傳註冊成功訊息和用戶資料
     return NextResponse.json(
       { message: "註冊成功", success: true, data: addedUser },
