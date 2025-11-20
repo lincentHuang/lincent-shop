@@ -3,6 +3,7 @@ import axiosInstance from "@/lib/axioInstance";
 import type { paths } from "@/types/api";
 import { toast } from "react-hot-toast";
 import { AxiosError } from "axios";
+import { useRouter } from "next/navigation";
 
 // 從 OpenAPI schema 推斷類型
 type SignupRequest =
@@ -37,14 +38,17 @@ const signupFetcher = async (
 };
 
 export const useSignup = () => {
+  const router = useRouter();
   const { trigger, isMutating, error, data } = useSWRMutation(
     "/api/auth/signup",
     signupFetcher,
     {
       onSuccess: (data) => {
         toast.success(data?.message || "註冊成功！請檢查信箱進行驗證");
+        setTimeout(() => {
+          router.push("/");
+        }, 300);
       },
-     
     }
   );
 

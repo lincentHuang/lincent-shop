@@ -2,12 +2,13 @@ import { Title } from "@/components/Text";
 import { YStack } from "@/components/YStack";
 import Input from "@/components/Fields/Input";
 import { Form, FormikProvider, useFormik } from "formik";
-import { KeyRound, Mail, User } from "lucide-react";
+import { KeyRound, LoaderCircle, Mail, User } from "lucide-react";
 import * as Yup from "yup";
 import { useSignup } from "@/hooks/useSignup";
+import { cn } from "@/utils/style";
 
 export default function Signup() {
-  const { trigger: signupSubmit } = useSignup();
+  const { trigger: signupSubmit, isLoading } = useSignup();
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
@@ -62,7 +63,11 @@ export default function Signup() {
           />
           <button
             type="submit"
-            className="bg-green-500 text-white rounded-md p-2 w-full">
+            className={cn(
+              " p-2 w-full flex justify-center items-center gap-2 disabled:opacity-50",
+              "bg-green-500 text-white rounded-md hover:bg-green-600 transition active:scale-[0.98]"
+            )}>
+            {isLoading && <LoaderCircle className="animate-spin" />}
             Sign Up
           </button>
         </Form>
