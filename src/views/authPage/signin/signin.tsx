@@ -6,13 +6,16 @@ import { Form, FormikProvider, useFormik } from "formik";
 import FacebookIcon from "./assets/facebook.svg";
 import GoogleIcon from "./assets/google.svg";
 import * as Yup from "yup";
-import { KeyRound, Mail } from "lucide-react";
+import { KeyRound, LoaderCircle, Mail } from "lucide-react";
 import Link from "next/link";
 import { ProvidersProps } from "@/app/signin/page";
 import { ClientSafeProvider, signIn } from "next-auth/react";
 import { XStack } from "@/components/XStack";
+import { useSignin } from "@/hooks/useSignin";
+import { cn } from "@/utils/style";
 
 export default function Signin({ providers }: { providers: ProvidersProps }) {
+  const { trigger: signinSubmit, isLoading } = useSignin();
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
@@ -30,7 +33,10 @@ export default function Signin({ providers }: { providers: ProvidersProps }) {
         .required("Required"),
     }),
     onSubmit: (values) => {
-      console.log(values);
+      signinSubmit({
+        email: values.email,
+        password: values.password,
+      });
     },
   });
 
@@ -51,7 +57,12 @@ export default function Signin({ providers }: { providers: ProvidersProps }) {
 
           <button
             type="submit"
-            className="bg-blue-500 text-white rounded-md p-2 w-full hover:bg-blue-600 transition-colors duration-200">
+            className={cn(
+              " p-2 w-full transition-colors duration-200",
+              "bg-blue-500 text-white rounded-md hover:bg-blue-600 ",
+              "flex justify-center items-center gap-2"
+            )}>
+            {isLoading && <LoaderCircle className="animate-spin " />}
             Sign In
           </button>
         </Form>
