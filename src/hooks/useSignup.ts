@@ -21,13 +21,18 @@ const signupFetcher = async (
     const response = await axiosInstance.post<SignupSuccessResponse>(url, arg);
     return response.data;
   } catch (err) {
-    // 使用 Axios 的 AxiosError 類型
+    // 處理 Axios 錯誤
     if (err instanceof AxiosError) {
-      const apiError = err.response?.data as SignupErrorResponse;
-      throw new Error(apiError?.message || "註冊失敗，請稍後再試");
+      const apiError = err.response?.data as SignupErrorResponse | undefined;
+      // 拋出新的 Error,讓 onError 接收
+      throw new Error(apiError?.message || "註冊失敗,請稍後再試");
     }
-    // 處理非 Axios 錯誤
-    throw new Error("發生未知錯誤");
+    // 處理攔截器拋出的字串錯誤
+    if (typeof err === "string") {
+      throw new Error(err);
+    }
+    // 處理其他錯誤
+    throw new Error("註冊失敗,請稍後再試");
   }
 };
 
@@ -37,11 +42,9 @@ export const useSignup = () => {
     signupFetcher,
     {
       onSuccess: (data) => {
-        toast.success(data.message || "註冊成功！請檢查信箱進行驗證");
+        toast.success(data?.message || "註冊成功！請檢查信箱進行驗證");
       },
-      onError: (err: Error) => {
-        toast.error(err.message);
-      },
+     
     }
   );
 

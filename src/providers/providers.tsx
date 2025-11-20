@@ -8,6 +8,7 @@ import { PersistGate } from "redux-persist/integration/react";
 import { ServerSideDataProvider } from "./serverSideData";
 import { countryProps } from "@/types/layoutType";
 import { SessionProvider } from "next-auth/react";
+import { Toaster } from "react-hot-toast";
 
 const persistor = persistStore(store);
 type ProvidersProps = {
@@ -21,6 +22,7 @@ export const Providers = ({ children, country }: ProvidersProps) => {
         <PersistGate loading={null} persistor={persistor}>
           <ServerSideDataProvider country={country} />
           {children}
+          <Toaster />
         </PersistGate>
       </Provider>
     </SessionProvider>

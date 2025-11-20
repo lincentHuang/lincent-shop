@@ -2,17 +2,16 @@ import { Title } from "@/components/Text";
 import { YStack } from "@/components/YStack";
 import Input from "@/components/Fields/Input";
 import { Form, FormikProvider, useFormik } from "formik";
-import { KeyRound, Mail } from "lucide-react";
+import { KeyRound, Mail, User } from "lucide-react";
 import * as Yup from "yup";
 import { useSignup } from "@/hooks/useSignup";
 
 export default function Signup() {
-
-  const {trigger:signupSubmit}= useSignup()
+  const { trigger: signupSubmit } = useSignup();
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
-      name:"",
+      name: "",
       email: "",
       password: "",
       posswordConfirm: "",
@@ -31,20 +30,23 @@ export default function Signup() {
         .oneOf([Yup.ref("password")], "Passwords must match")
         .required("Confirm Password is required"),
     }),
-    onSubmit: (values) => {
+
+    onSubmit: async (values) => {
       signupSubmit({
-        name:values.name,
+        name: values.name,
         email: values.email,
         password: values.password,
         passwordConfirm: values.posswordConfirm,
       });
     },
   });
+
   return (
     <YStack className="gap-4 flex-1 w-full">
       <Title variants="h3"> Sign up</Title>
       <FormikProvider value={formik}>
         <Form>
+          <Input type="text" name="name" icon={<User />} placeholder="Name" />
           <Input type="text" name="email" icon={<Mail />} placeholder="Email" />
           <Input
             type="password"
@@ -68,4 +70,3 @@ export default function Signup() {
     </YStack>
   );
 }
-

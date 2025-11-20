@@ -1,9 +1,10 @@
-import axios from 'axios';
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const axiosInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || '',
+  baseURL: process.env.NEXT_PUBLIC_API_URL || "",
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
 });
 
@@ -22,8 +23,9 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
-    const message = error.response?.data?.message || '發生錯誤';
-    return Promise.reject(new Error(message));
+    const message = error.response?.data?.message || "發生錯誤";
+    toast.error(message);
+    return Promise.reject(message);
   }
 );
 
