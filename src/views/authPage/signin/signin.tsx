@@ -52,8 +52,7 @@ export default function Signin({
     <YStack className="gap-4 flex-1 w-full">
       <Title variants="h3"> Sign in</Title>
       <FormikProvider value={formik}>
-        <Form >
-
+        <Form>
           <Input name="email" icon={<Mail />} type="text" placeholder="Email" />
           <Input
             icon={<KeyRound />}
@@ -74,7 +73,7 @@ export default function Signin({
           </button>
         </Form>
         <Link
-          href={"/forgot-password"}
+          href={"/auth/forgot"}
           className=" justify-start flex "
           onClick={() => {}}>
           <Text className="text-primary"> forgot password </Text>
