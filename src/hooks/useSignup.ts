@@ -4,7 +4,6 @@ import type { paths } from "@/types/api";
 import { toast } from "react-hot-toast";
 import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
-import { useSignin } from "./useSignin";
 import { signIn } from "next-auth/react";
 
 // 從 OpenAPI schema 推斷類型
