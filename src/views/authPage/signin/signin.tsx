@@ -14,8 +14,14 @@ import { XStack } from "@/components/XStack";
 import { useSignin } from "@/hooks/useSignin";
 import { cn } from "@/utils/style";
 
-export default function Signin({ providers }: { providers: ProvidersProps }) {
-  const { trigger: signinSubmit, isLoading } = useSignin();
+export default function Signin({
+  providers,
+  callbackUrl,
+}: {
+  providers: ProvidersProps;
+  callbackUrl: string;
+}) {
+  const { trigger: signinSubmit, isLoading } = useSignin(callbackUrl);
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
@@ -46,7 +52,8 @@ export default function Signin({ providers }: { providers: ProvidersProps }) {
     <YStack className="gap-4 flex-1 w-full">
       <Title variants="h3"> Sign in</Title>
       <FormikProvider value={formik}>
-        <Form>
+        <Form >
+
           <Input name="email" icon={<Mail />} type="text" placeholder="Email" />
           <Input
             icon={<KeyRound />}

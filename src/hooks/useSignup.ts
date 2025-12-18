@@ -39,7 +39,7 @@ const signupFetcher = async (
 	}
 };
 
-export const useSignup = () => {
+export const useSignup = (callbackUrl?:string) => {
 	const router = useRouter();
 	const { trigger, isMutating, error, data } = useSWRMutation(
 		"/api/auth/signup",
@@ -65,7 +65,7 @@ export const useSignup = () => {
 
 			if (signinResult?.ok) {
 				setTimeout(() => {
-					router.push("/");
+					router.push(callbackUrl || "/");
 				}, 500);
 			} else {
 				toast.error("註冊成功，但自動登入失敗，請手動登入");

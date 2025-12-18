@@ -7,8 +7,8 @@ import * as Yup from "yup";
 import { useSignup } from "@/hooks/useSignup";
 import { cn } from "@/utils/style";
 
-export default function Signup() {
-  const { trigger: signupSubmit, isLoading } = useSignup();
+export default function Signup({ callbackUrl }: { callbackUrl?: string }) {
+  const { trigger: signupSubmit, isLoading } = useSignup(callbackUrl);
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {

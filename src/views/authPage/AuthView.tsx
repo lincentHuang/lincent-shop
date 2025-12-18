@@ -13,7 +13,13 @@ import { cn } from "@/utils/style";
 import { useState } from "react";
 import Image from "next/image";
 
-export default function AuthView({ providers }: { providers: ProvidersProps }) {
+export default function AuthView({
+  providers,
+  callbackUrl,
+}: {
+  providers: ProvidersProps;
+  callbackUrl: string;
+}) {
   const [activeTab, setActiveTab] = useState<"signin" | "signup">("signin");
   return (
     <YStack className="justify-start items-start my-4 gap-4 w-full">
@@ -52,8 +58,8 @@ export default function AuthView({ providers }: { providers: ProvidersProps }) {
                 </XStack>
               </YStack>
 
-              {activeTab === "signin" && <Signin providers={providers} />}
-              {activeTab === "signup" && <Signup />}
+              {activeTab === "signin" && <Signin providers={providers} callbackUrl={callbackUrl} />}
+              {activeTab === "signup" && <Signup callbackUrl={callbackUrl}/>}
             </YStack>
           </YStack>
         </XStack>

@@ -42,7 +42,7 @@ const signinFetcher = async (
 	}
 };
 
-export const useSignin = () => {
+export const useSignin = (callbackUrl?:string) => {
 	const router = useRouter();
 	const { trigger, isMutating, error, data } = useSWRMutation(
 		"/api/auth/signin",
@@ -52,7 +52,7 @@ export const useSignin = () => {
 				if (data?.ok) {
 					toast.success("登入成功!");
 					setTimeout(() => {
-						router.push("/");
+						router.push(callbackUrl || "/");
 					}, 300);
 				}
 				if (!data?.ok) {
