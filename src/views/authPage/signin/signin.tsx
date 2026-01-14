@@ -93,12 +93,13 @@ export default function Signin({
               .with("Google", () => <GoogleIcon className="size-6" />)
               .with("Facebook", () => <FacebookIcon className="size-6" />)
               .otherwise(() => "");
+            if (provider.name === "Credentials") return null;
             return (
               <div key={provider.name} className="flex-1">
                 <button
                   className=" border border-gray-200 gap-4 text-foreground hover:border-gray-400 shadow-xs rounded-md p-2 w-full flex items-center cursor-pointer transition-colors duration-200"
                   onClick={() => {
-                    signIn(provider.id);
+                    signIn(provider.id,{ callbackUrl: callbackUrl});
                   }}>
                   {iconImage}
                   {provider.name}

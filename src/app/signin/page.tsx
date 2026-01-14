@@ -20,6 +20,8 @@ export default async function page({searchParams}:Props) {
   const params = await searchParams;
   const callbackUrl = (params.callbackUrl as string)|| "/";
   const session = await getSession();  
+
+  console.log(session,"session---signin page");
   if(session){
     return {
       redirect: {

@@ -10,8 +10,10 @@ import Signin from "./signin/signin";
 import Signup from "./signup/signup";
 import { ProvidersProps } from "@/app/signin/page";
 import { cn } from "@/utils/style";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function AuthView({
   providers,
@@ -21,6 +23,15 @@ export default function AuthView({
   callbackUrl: string;
 }) {
   const [activeTab, setActiveTab] = useState<"signin" | "signup">("signin");
+  const session = useSession();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (session.data) {
+      router.push("/");
+    }
+  }, [router, session.data]);
+  
   return (
     <YStack className="justify-start items-start my-4 gap-4 w-full">
       <SigninHeader />
@@ -58,8 +69,10 @@ export default function AuthView({
                 </XStack>
               </YStack>
 
-              {activeTab === "signin" && <Signin providers={providers} callbackUrl={callbackUrl} />}
-              {activeTab === "signup" && <Signup callbackUrl={callbackUrl}/>}
+              {activeTab === "signin" && (
+                <Signin providers={providers} callbackUrl={callbackUrl} />
+              )}
+              {activeTab === "signup" && <Signup callbackUrl={callbackUrl} />}
             </YStack>
           </YStack>
         </XStack>

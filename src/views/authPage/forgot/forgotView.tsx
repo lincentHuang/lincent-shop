@@ -13,7 +13,7 @@ import Link from "next/link";
 import { Text, Title } from "@/components/Text";
 
 export default function ForgotView() {
-  const forgotHandler = (e: any) => {
+  const forgotHandler = (e: unknown) => {
     console.log(e, "forgot password");
   };
   const isLoading = false;
