@@ -13,16 +13,15 @@ export type ProvidersProps = Record<
 > | null;
 
 type Props = {
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
-}
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
 
-export default async function page({searchParams}:Props) {
+export default async function page({ searchParams, }: Props) {
   const params = await searchParams;
-  const callbackUrl = (params.callbackUrl as string)|| "/";
-  const session = await getSession();  
+  const callbackUrl = (params.callbackUrl as string) || "/";
+  const session = await getSession();
 
-  console.log(session,"session---signin page");
-  if(session){
+  if (session) {
     return {
       redirect: {
         destination: callbackUrl as string,
@@ -30,5 +29,5 @@ export default async function page({searchParams}:Props) {
     };
   }
   const providers = await getProviders();
-  return <AuthView providers={providers} callbackUrl={callbackUrl}/>;
+  return <AuthView providers={providers} callbackUrl={callbackUrl} />;
 }

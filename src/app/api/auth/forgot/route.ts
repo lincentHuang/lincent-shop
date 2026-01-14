@@ -31,9 +31,9 @@ import { db } from "@/utils/db";
 import { validateEmail } from "@/utils/validation";
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
-import { createActivationToken } from "@/utils/createActivationToken";
+import { createActivationToken, createResetToken } from "@/utils/createActivationToken";
 import { sendEmail } from "@/utils/sendEmail";
-import { activeEmailTemplate } from "@/emailTemplates/emailTemplate1";
+import { resetEmailTemplate } from "@/emailTemplates/resetEmailTemplate";
 
 /**
  * GET 請求處理器 - 測試 API 是否正常運作
@@ -56,10 +56,10 @@ export async function POST(request: NextRequest) {
 
     // 解析請求內容，取得註冊資料
     const body = await request.json();
-    const { name, email, password, passwordConfirm } = body;
+    const { email } = body;
 
     // 驗證必填欄位是否完整
-    if (!name || !email || !password || !passwordConfirm) {
+    if (!email) {
       return NextResponse.json(
         { message: "所有欄位皆為必填", success: false },
         { status: 400 }
@@ -76,49 +76,27 @@ export async function POST(request: NextRequest) {
 
     // 檢查 Email 是否已被其他用戶註冊
     const user = await User.findOne({ email });
-    if (user) {
+    if (!user) {
       return NextResponse.json(
-        { message: "此 Email 已被註冊", success: false },
+        { message: "此 Email 沒有被註冊過", success: false },
         { status: 400 }
       );
     }
 
-    // 驗證密碼強度（最少6個字元）
-    if (password.length < 6) {
-      return NextResponse.json(
-        { message: "密碼長度至少為 6 個字元", success: false },
-        { status: 400 }
-      );
-    }
 
-    // 使用 bcrypt 對密碼進行加密，鹽值為12
-    const cryptedPassword = await bcrypt.hash(password, 12);
-
-    // 建立新使用者物件
-    const newUser = new User({
-      name,
-      email,
-      password: cryptedPassword,
+    const user_id = createResetToken({
+      id: user._id.toString(),
     });
-
-    // 將新用戶儲存到資料庫
-    const addedUser = await newUser.save();
-
-    // 生成帳戶啟用令牌，用於信箱驗證
-    const activation_token = createActivationToken({
-      id: addedUser._id,
-    });
-
     // 構建啟用帳戶的網址
-    const url = `${process.env.BASE_URL}/activate/${activation_token}`;
+    const url = `${process.env.BASE_URL}/auth/reset/${user_id}`;
 
     // 發送啟用信件給新註冊的用戶
-    sendEmail(email, url, "Activate your account", activeEmailTemplate);
+    sendEmail(email, url, "Reset your password",resetEmailTemplate);
 
     db.disconnectDB();
     // 回傳註冊成功訊息和用戶資料
     return NextResponse.json(
-      { message: "註冊成功", success: true, data: addedUser },
+      { message: "重設密碼郵件已經寄去你的信箱", success: true, data: "" },
       { status: 201 }
     );
   } catch (error) {

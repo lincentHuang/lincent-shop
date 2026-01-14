@@ -28,7 +28,7 @@ export default function AuthView({
 
   useEffect(() => {
     if (session.data) {
-      router.push("/");
+      // router.push("/");
     }
   }, [router, session.data]);
   
