@@ -39,7 +39,7 @@
     "**/*.mts",
     ".next\\dev/types/**/*.ts",
     ".next\\dev/types/**/*.ts"
-  ],
+, "src/app/auth/reset"  ],
   "exclude": [
     "node_modules"
   ]
